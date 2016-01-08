@@ -1,0 +1,152 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>Sports Scores's Popup</title>
+    <style>
+      body {
+        margin:5px;
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 100%;
+      }
+      body,html{
+        min-height: 500px;
+        max-height: 600px;
+        min-width: 400px;
+        max-width: 500px;
+        background: grey;
+      }
+      #right {
+        text-align:right;
+        font-size:8pt;
+      }
+      #span {
+        font-size:50%; 
+        color:#353535;
+        font-weight: bold;
+      }
+      #error{
+        color:red;
+        margin: 0;
+        padding: 2px;
+      }
+      h5,h6 {
+        margin: 0;
+        padding: 2px;
+      }
+      .boxed{
+        border-style: inset;
+        border-width: 1px;
+        background: #fff;
+      }
+      .cricket-loader, .epl-loader, .uefa-loader{
+        text-align:center;
+      }
+      .loader-img{
+        width:30px;
+        height:30px;
+      }
+      .cricket-container, .epl-football-container, .uefachamps-football-container {
+        width:100%;
+      }
+      #epl-football .descriptionClass, #uefachamps-football .descriptionClass {
+        display:none;
+      }
+      .cricket-container .cricket-header, .epl-football-container .epl-football-header-live, .epl-football-container .epl-football-header-reports, 
+      .uefachamps-football-container .uefachamps-football-header-live, .uefachamps-football-container .uefachamps-football-header-reports{
+        padding: 2px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .cricket-container .cricket-content, .epl-football-container .epl-football-content, .uefachamps-football-container .uefachamps-football-content{
+        display: none;
+        padding : 2px;
+        font-size: 15px;
+      }
+    </style>
+
+    <script src="scripts/jquery-ui.js"></script>
+    <script src="scripts/jquery-1.10.2.js"></script>
+    <script src="popup.js"></script>  
+
+  </head>
+  <body>
+    <div class="boxed">Sports Live Scores
+      <h6 style="float:right"; ><a href="/options.html"><img border="0" src="img/options.png" width="18" height="18"></a></h6>
+    </div>
+    <br />
+    <div class="boxed" id="cricket"> 
+      <h6>CRICKET</h6>
+      <div class="cricket-loader">   <img class ="loader-img" src='img/loading.png' /></div>
+      <table cellpadding='0' cellspacing='0' id="cricketTable">    
+      </table>
+      <h6 id="right" ><a href='http://www.espncricinfo.com/ci/engine/match/index.html?CMP=chrome'>more for cricket lovers <img border="0" src="img/raquo.png" width="10" height="9"></a></h6>
+      <div class="cricket-container">
+        <div class="cricket-header"><span style="font-size: 70%" id="cricket-arrow-span">More <img src="img/more.png" width="9" height="8"></span>
+        </div>
+        <div class="cricket-content">
+          <table cellpadding='0' cellspacing='0' id="cricketTable1"/>    
+          </table>
+        </div>
+      </div>
+    </div>
+  <br />
+  <div class="boxed" id="epl-football"> 
+    <h6>ENGLISH PREMIER LEAGUE - FOOTBALL</h6>
+    <div class="epl-loader">   <img class ="loader-img"  src='img/loading.png' /></div>
+    <table cellpadding='0' cellspacing='0' id="eplFootballTable">    
+    </table>
+    <div class="epl-football-container">
+      <div class="epl-football-header-live"><span style="font-size: 70%" id="epl-football-arrow-span-live">More <img src="img/more.png" width="9" height="8"></span>
+      </div>
+      <div class="epl-football-content">
+        <table cellpadding='0' cellspacing='0' id="eplFootballTable1">    
+        </table>
+      </div>
+    </div>
+    <div class="epl-football-container">
+      <div class="epl-football-header-reports"><span style="font-size: 70%" id="epl-football-arrow-span-reports">Match Reports <img src="img/more.png" width="9" height="8"></span>
+      </div>
+      <div class="epl-football-content">
+        <table cellpadding='0' cellspacing='0' id="eplFootballTable2"/>    
+        </table>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="boxed" id="uefachamps-football"> 
+    <h6>UEFA CHAMPIONS LEAGUE - FOOTBALL</h6>
+    <div class="uefa-loader">   <img class ="loader-img" src='img/loading.png'/></div>
+    <table cellpadding='0' cellspacing='0' id="uefachampsFootballTable">    
+    </table>
+    <div class="uefachamps-football-container">
+      <div class="uefachamps-football-header-live"><span style="font-size: 70%" id="uefachamps-football-arrow-span-live">More <img src="img/more.png" width="9" height="8"></span>
+      </div>
+      <div class="uefachamps-football-content">
+        <table cellpadding='0' cellspacing='0' id="uefachampsFootballTable1"/>    
+        </table>
+      </div>
+    </div>
+    <div class="uefachamps-football-container">
+      <div class="uefachamps-football-header-reports"><span style="font-size: 70%" id="uefachamps-football-arrow-span-reports">Match Reports <img src="img/more.png" width="9" height="8"></span>
+      </div>
+      <div class="uefachamps-football-content">
+        <table cellpadding='0' cellspacing='0' id="uefachampsFootballTable2"/>    
+        </table>
+      </div>
+    </div>
+  </div>
+  <br />
+
+  <div class="boxed"> 
+    <h6>Rankings Table</h6>
+    <h6><a href="http://www.premierleague.com/en-gb/matchday/league-table.html">EPL Rankings Table and Live Scores</a></h6>
+    <h6><a href="http://www.uefa.com/uefachampionsleague/season=?/standings/">Champions League Rankings Table</a></h6>
+    <br />
+    <h6>Coming Soon...</h6>
+    <h6><a href="http://www.uefa.com/uefaeuro/draws/index.html">UEFA Euro 2016 Draws</a></h6>
+    <h6><a href="http://www.uefa.com/uefaeuro/season=2016/matches/day=1/index.html">UEFA Euro 2016 Fixtures</a></h6>
+  </div>
+  </body>
+</html>
+
