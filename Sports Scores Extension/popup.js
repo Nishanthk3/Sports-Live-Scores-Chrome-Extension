@@ -25,7 +25,7 @@ function getScores() {
 	{
 	    $.ajax({
 				type : 'GET',
-				url : "http://localhost:8080/sports/cricket/rss.html",
+				url : "http://editonfly.com:8080/sports/cricket/rss.html",
 				statusCode: {
 				    404: function() {
 				      alert( "Not Found" );
