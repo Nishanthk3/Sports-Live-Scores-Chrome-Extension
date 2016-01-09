@@ -46,19 +46,19 @@
         width:30px;
         height:30px;
       }
-      .cricket-container, .epl-football-container, .uefachamps-football-container {
+      .cricket-container, .epl-football-container, .uefachamps-football-container, .facup-football-container {
         width:100%;
       }
-      #cricket .descriptionClass, #epl-football .descriptionClass, #uefachamps-football .descriptionClass {
+      #cricket .descriptionClass, #epl-football .descriptionClass, #uefachamps-football .descriptionClass, #facup-football .descriptionClass {
         display:none;
       }
       .cricket-container .cricket-header-localmatches, .cricket-container .cricket-header-news, .epl-football-container .epl-football-header-live, .epl-football-container .epl-football-header-reports, 
-      .uefachamps-football-container .uefachamps-football-header-live, .uefachamps-football-container .uefachamps-football-header-reports{
+      .uefachamps-football-container .uefachamps-football-header-live, .uefachamps-football-container .uefachamps-football-header-reports, .facup-football-container .facup-football-header-live/*, .facup-football-container .facup-football-header-reports*/{
         padding: 2px;
         cursor: pointer;
         font-weight: bold;
       }
-      .cricket-container .cricket-content, .epl-football-container .epl-football-content, .uefachamps-football-container .uefachamps-football-content{
+      .cricket-container .cricket-content, .epl-football-container .epl-football-content, .uefachamps-football-container .uefachamps-football-content, .facup-football-container .facup-football-content{
         display: none;
         padding : 2px;
         font-size: 15px;
@@ -145,7 +145,29 @@
     </div>
   </div>
   <br />
-
+  <div class="boxed" id="facup-football"> 
+    <h6>ENGLISH FA CUP - FOOTBALL</h6>
+    <div class="facup-loader">   <img class ="loader-img" src='img/loading.png'/></div>
+    <table cellpadding='0' cellspacing='0' id="facupFootballTable">    
+    </table>
+    <div class="facup-football-container">
+      <div class="facup-football-header-live"><span style="font-size: 70%" id="facup-football-arrow-span-live">More <img src="img/more.png" width="9" height="8"></span>
+      </div>
+      <div class="facup-football-content">
+        <table cellpadding='0' cellspacing='0' id="facupFootballTable1"/>    
+        </table>
+      </div>
+    </div>
+<!--     <div class="facup-football-container">
+      <div class="facup-football-header-reports"><span style="font-size: 70%" id="facup-football-arrow-span-reports">Match Reports <img src="img/more.png" width="9" height="8"></span>
+      </div>
+      <div class="facup-football-content">
+        <table cellpadding='0' cellspacing='0' id="facupFootballTable2"/>    
+        </table>
+      </div>
+    </div> -->
+  </div>
+  <br />
   <div class="boxed"> 
     <h6>Rankings Table</h6>
     <h6><a href="http://www.premierleague.com/en-gb/matchday/league-table.html">EPL Rankings Table and Live Scores</a></h6>

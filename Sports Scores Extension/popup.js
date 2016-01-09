@@ -99,7 +99,7 @@ function getScores() {
 						cricketPlusImg.width="9";
 						cricketPlusImg.height="9";
 						cricketPlusImg.className="cricket-plusminus";
-						cricketPlusImg.id="id9_"+i;
+						cricketPlusImg.id="idcric0_"+i;
 						var tr = document.createElement('tr');
 						var td = document.createElement('td');
 						var h6 = document.createElement('h6');	
@@ -110,7 +110,7 @@ function getScores() {
 						h6.appendChild(cricketPlusImg);
 						h6.appendChild(a);
 						h6_1.className = "descriptionClass"; 
-						h6_1.id="h69_"+i;
+						h6_1.id="h6cric0_"+i;
 						h6_1.innerText = arr3[i].description;
 						td.appendChild(h6);
 						td.appendChild(h6_1);
@@ -179,7 +179,7 @@ function getScores() {
 						footballPlusImg.width="9";
 						footballPlusImg.height="9";
 						footballPlusImg.className="epl-plusminus";
-						footballPlusImg.id="id0_"+i;
+						footballPlusImg.id="idepl0_"+i;
 						var tr = document.createElement('tr');
 						var td = document.createElement('td');
 						var h6 = document.createElement('h6');	
@@ -190,7 +190,7 @@ function getScores() {
 						h6.appendChild(footballPlusImg);
 						h6.appendChild(a);
 						h6_1.className = "descriptionClass"; 
-						h6_1.id="h60_"+i;
+						h6_1.id="h6epl0_"+i;
 						h6_1.innerText = arr1[i].description;
 						td.appendChild(h6);
 						td.appendChild(h6_1);
@@ -207,7 +207,7 @@ function getScores() {
 					footballPlusImg.width="9";
 					footballPlusImg.height="9";
 					footballPlusImg.className="epl-plusminus";
-					footballPlusImg.id="id1_"+i;
+					footballPlusImg.id="idepl1_"+i;
 					var tr = document.createElement('tr');
 					var td2 = document.createElement('td');	
 					var h6 = document.createElement('h6');	
@@ -219,7 +219,7 @@ function getScores() {
 					h6.appendChild(a);
 					res.appendChild(h6);
 					h6_1.className = "descriptionClass"; 
-					h6_1.id="h61_"+i;
+					h6_1.id="h6epl1_"+i;
 					h6_1.innerText = arr1[i].description;
 					res.appendChild(h6_1);	
 				}
@@ -231,7 +231,7 @@ function getScores() {
 					footballPlusImg.width="9";
 					footballPlusImg.height="9";
 					footballPlusImg.className="epl-plusminus";
-					footballPlusImg.id="id2_"+i;
+					footballPlusImg.id="idepl2_"+i;
 					var tr = document.createElement('tr');
 					var td = document.createElement('td');	
 					var h6 = document.createElement('h6');	
@@ -242,7 +242,7 @@ function getScores() {
 					h6.appendChild(footballPlusImg);
 					h6.appendChild(a);
 					h6_1.className = "descriptionClass"; 
-					h6_1.id="h62_"+i;
+					h6_1.id="h6epl2_"+i;
 					h6_1.innerText = arr2[i].description;
 					td.appendChild(h6);
 					td.appendChild(h6_1);
@@ -311,7 +311,7 @@ function getScores() {
 						footballPlusImg.width="9";
 						footballPlusImg.height="9";
 						footballPlusImg.className="uefachamps-plusminus";
-						footballPlusImg.id="id3_"+i;
+						footballPlusImg.id="iduefa0_"+i;
 						var tr = document.createElement('tr');
 						var td = document.createElement('td');	
 						var h6 = document.createElement('h6');	
@@ -322,7 +322,7 @@ function getScores() {
 						h6.appendChild(footballPlusImg);
 						h6.appendChild(a);
 						h6_1.className = "descriptionClass"; 
-						h6_1.id="h63_"+i;
+						h6_1.id="h6uefa0_"+i;
 						h6_1.innerText = arr1[i].description;
 						td.appendChild(h6);
 						td.appendChild(h6_1);
@@ -340,7 +340,7 @@ function getScores() {
 					footballPlusImg.width="9";
 					footballPlusImg.height="9";
 					footballPlusImg.className="uefachamps-plusminus";
-					footballPlusImg.id="id4_"+i;
+					footballPlusImg.id="iduefa1_"+i;
 					var tr = document.createElement('tr');
 					var td2 = document.createElement('td');	
 					var h6 = document.createElement('h6');	
@@ -352,7 +352,7 @@ function getScores() {
 					h6.appendChild(a);
 					res.appendChild(h6);
 					h6_1.className = "descriptionClass"; 
-					h6_1.id="h64_"+i;
+					h6_1.id="h6uefa1_"+i;
 					h6_1.innerText = arr1[i].description;
 					res.appendChild(h6_1);	
 				}
@@ -364,7 +364,7 @@ function getScores() {
 					footballPlusImg.width="9";
 					footballPlusImg.height="9";
 					footballPlusImg.className="uefachamps-plusminus";
-					footballPlusImg.id="id5_"+i;
+					footballPlusImg.id="iduefa2_"+i;
 					var tr = document.createElement('tr');
 					var td = document.createElement('td');	
 					var h6 = document.createElement('h6');	
@@ -375,7 +375,7 @@ function getScores() {
 					h6.appendChild(footballPlusImg);
 					h6.appendChild(a);
 					h6_1.className = "descriptionClass"; 
-					h6_1.id="h65_"+i;
+					h6_1.id="h6uefa2_"+i;
 					h6_1.innerText = arr2[i].description;
 					td.appendChild(h6);
 					td.appendChild(h6_1);
@@ -400,6 +400,101 @@ function getScores() {
 	else
 	{
 		$('#uefachamps-football').remove();
+	}
+	if(leagues.indexOf("facup")>-1 || leagues.indexOf("all-leagues")>-1 || leagues.length == 0 )
+	{
+	    $.ajax({
+			type : 'GET',
+			url : "http://localhost:8080/sports/facupfootball/rss.html",
+			statusCode: {
+			    404: function() {
+			      alert( "Not Found" );
+			    },
+				401: function() {
+				      alert( "Unauthorized - Access Denied" );
+		    	}
+			},
+			success : function(text) {
+				$('.facup-loader').remove();
+				var arr1 = text.ArrayList;
+				if(arr1.length == 0)
+				{
+					var h6 = document.createElement('h6');
+					h6.innerText = "No ongoing matches";
+					res.appendChild(h6);
+				}
+				for(var i=0; i<arr1.length; i++){
+					if(i < 6 )
+					{
+						var footballPlusImg = document.createElement("img");
+						footballPlusImg.src = "img/plus.png";
+						footballPlusImg.width="9";
+						footballPlusImg.height="9";
+						footballPlusImg.className="facup-plusminus";
+						footballPlusImg.id="idfacup0_"+i;
+						var tr = document.createElement('tr');
+						var td = document.createElement('td');
+						var h6 = document.createElement('h6');	
+						var h6_1 = document.createElement('h6');				
+						var a = document.createElement('a');
+						a.href = arr1[i].link;
+						a.innerText = "   "+arr1[i].title;
+						h6.appendChild(footballPlusImg);
+						h6.appendChild(a);
+						h6_1.className = "descriptionClass"; 
+						h6_1.id="h6facup0_"+i;
+						h6_1.innerText = arr1[i].description;
+						td.appendChild(h6);
+						td.appendChild(h6_1);
+						tr.appendChild(td);
+						document.getElementById('facupFootballTable').appendChild(tr);
+					}
+					else{
+						break;
+					}
+				}
+				for(var i=6; i<arr1.length; i++){
+					var footballPlusImg = document.createElement("img");
+					footballPlusImg.src = "img/plus.png";
+					footballPlusImg.width="9";
+					footballPlusImg.height="9";
+					footballPlusImg.className="facup-plusminus";
+					footballPlusImg.id="idfacup1_"+i;
+					var tr = document.createElement('tr');
+					var td = document.createElement('td');	
+					var h6 = document.createElement('h6');	
+					var h6_1 = document.createElement('h6');				
+					var a = document.createElement('a');
+					a.href = arr1[i].link;
+					a.innerText = "   "+arr1[i].title;
+					h6.appendChild(footballPlusImg);
+					h6.appendChild(a);
+					h6_1.className = "descriptionClass"; 
+					h6_1.id="h6facup1_"+i;
+					h6_1.innerText = arr1[i].description;
+					td.appendChild(h6);
+					td.appendChild(h6_1);
+					tr.appendChild(td);
+					document.getElementById('facupFootballTable1').appendChild(tr);
+				}
+				$('img.facup-plusminus').click(showHide);
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				$('.facup-loader').remove();
+				var tr = document.createElement('tr');
+				var td = document.createElement('td');
+				var h6 = document.createElement('h6');
+				h6.id="error";			
+				h6.innerText = "Sorry, something's wrong, will be fixed soon.";
+				td.appendChild(h6);
+				tr.appendChild(td);
+				document.getElementById('facupFootballTable').appendChild(tr);
+			}
+		});
+	}
+	else
+	{
+		$('#facup-football').remove();
 	}
 }
 
@@ -426,7 +521,7 @@ function openLink() {
 function showHide() {
     var id = $(this).attr('id');
     var idOf0 = id.split("_")[0]; 
-    var h6id = "h6" + idOf0.charAt(idOf0.length - 1) + "_" + id.split("_")[1]; //to get h60_1 format 
+    var h6id = "h6" + idOf0.split("id")[1] + "_" + id.split("_")[1]; //to get h60_1 format 
     if($('#' + h6id).css('display') == 'none') {
         $('#' + h6id).slideDown("fast");
         $(this).attr({src: 'img/minus.png'});
@@ -442,55 +537,6 @@ function showHide() {
 // }
 
 $(document).ready(function() { 
-    var cricketMoreImgLocalMatches = document.createElement("img");
-	cricketMoreImgLocalMatches.src = "img/more.png";
-	cricketMoreImgLocalMatches.width="9";
-	cricketMoreImgLocalMatches.height="8";
-	var cricketLessImgLocalMatches = document.createElement("img");
-	cricketLessImgLocalMatches.src = "img/less.png";
-	cricketLessImgLocalMatches.width="9";
-	cricketLessImgLocalMatches.height="8";
-    var cricketMoreImgNews = document.createElement("img");
-	cricketMoreImgNews.src = "img/more.png";
-	cricketMoreImgNews.width="9";
-	cricketMoreImgNews.height="8";
-	var cricketLessImgNews = document.createElement("img");
-	cricketLessImgNews.src = "img/less.png";
-	cricketLessImgNews.width="9";
-	cricketLessImgNews.height="8";
-	var eplFootballMoreImgLive = document.createElement("img");
-	eplFootballMoreImgLive.src = "img/more.png";
-	eplFootballMoreImgLive.width="9";
-	eplFootballMoreImgLive.height="8";
-	var eplFootballLessImgLive = document.createElement("img");
-	eplFootballLessImgLive.src = "img/less.png";
-	eplFootballLessImgLive.width="9";
-	eplFootballLessImgLive.height="8";
-	var eplFootballMoreImgReports = document.createElement("img");
-	eplFootballMoreImgReports.src = "img/more.png";
-	eplFootballMoreImgReports.width="9";
-	eplFootballMoreImgReports.height="8";
-	var eplFootballLessImgReports = document.createElement("img");
-	eplFootballLessImgReports.src = "img/less.png";
-	eplFootballLessImgReports.width="9";
-	eplFootballLessImgReports.height="8";
-	var uefachampsFootballMoreImgLive = document.createElement("img");
-	uefachampsFootballMoreImgLive.src = "img/more.png";
-	uefachampsFootballMoreImgLive.width="9";
-	uefachampsFootballMoreImgLive.height="8";
-	var uefachampsFootballLessImgLive = document.createElement("img");
-	uefachampsFootballLessImgLive.src = "img/less.png";
-	uefachampsFootballLessImgLive.width="9";
-	uefachampsFootballLessImgLive.height="8";
-	var uefachampsFootballMoreImgReports = document.createElement("img");
-	uefachampsFootballMoreImgReports.src = "img/more.png";
-	uefachampsFootballMoreImgReports.width="9";
-	uefachampsFootballMoreImgReports.height="8";
-	var uefachampsFootballLessImgReports = document.createElement("img");
-	uefachampsFootballLessImgReports.src = "img/less.png";
-	uefachampsFootballLessImgReports.width="9";
-	uefachampsFootballLessImgReports.height="8";
-
     getCurrentTabUrl(function(url) {
     //renderStatus('Sports Live Scores');
     getScores();
@@ -508,12 +554,12 @@ $(document).ready(function() {
 	            if($content.is(":visible") == true)
 	            {
 					document.getElementById("cricket-arrow-span-localmatches").textContent=" Less ";
-					document.getElementById("cricket-arrow-span-localmatches").appendChild(cricketLessImgLocalMatches);
+					$("#cricket-arrow-span-localmatches").append("<img src='img/less.png' width='9' height='8' />");
 	            }
 	            else
 	            {
 					document.getElementById("cricket-arrow-span-localmatches").textContent="More ";
-					document.getElementById("cricket-arrow-span-localmatches").appendChild(cricketMoreImgLocalMatches);
+					$("#cricket-arrow-span-localmatches").append("<img src='img/more.png' width='9' height='8' />");
 	            }
 	        });
 	    });
@@ -529,12 +575,12 @@ $(document).ready(function() {
 	            if($content.is(":visible") == true)
 	            {
 					document.getElementById("cricket-arrow-span-news").textContent=" News ";
-					document.getElementById("cricket-arrow-span-news").appendChild(cricketLessImgNews);
+					$("#cricket-arrow-span-news").append("<img src='img/less.png' width='9' height='8' />");
 	            }
 	            else
 	            {
 					document.getElementById("cricket-arrow-span-news").textContent="News ";
-					document.getElementById("cricket-arrow-span-news").appendChild(cricketMoreImgNews);
+					$("#cricket-arrow-span-news").append("<img src='img/more.png' width='9' height='8' />");
 	            }
 	        });
 	    });
@@ -550,12 +596,12 @@ $(document).ready(function() {
 	            if($content.is(":visible") == true)
 	            {
 					document.getElementById("epl-football-arrow-span-live").textContent=" Less ";
-					document.getElementById("epl-football-arrow-span-live").appendChild(eplFootballLessImgLive);
+					$("#epl-football-arrow-span-live").append("<img src='img/less.png' width='9' height='8' />");
 	            }
 	            else
 	            {
 					document.getElementById("epl-football-arrow-span-live").textContent="More ";
-					document.getElementById("epl-football-arrow-span-live").appendChild(eplFootballMoreImgLive);
+					$("#epl-football-arrow-span-live").append("<img src='img/more.png' width='9' height='8' />");
 	            }
 	        });
 	    });
@@ -570,12 +616,12 @@ $(document).ready(function() {
 	            if($content.is(":visible") == true)
 	            {
 					document.getElementById("epl-football-arrow-span-reports").textContent=" Match Reports ";
-					document.getElementById("epl-football-arrow-span-reports").appendChild(eplFootballLessImgReports);
+					$("#epl-football-arrow-span-reports").append("<img src='img/less.png' width='9' height='8' />");
 	            }
 	            else
 	            {
 					document.getElementById("epl-football-arrow-span-reports").textContent="Match Reports ";
-					document.getElementById("epl-football-arrow-span-reports").appendChild(eplFootballMoreImgReports);
+					$("#epl-football-arrow-span-reports").append("<img src='img/more.png' width='9' height='8' />");
 	            }
 	        });
 	    });
@@ -590,12 +636,12 @@ $(document).ready(function() {
 	            if($content.is(":visible") == true)
 	            {
 					document.getElementById("uefachamps-football-arrow-span-live").textContent=" Less ";
-					document.getElementById("uefachamps-football-arrow-span-live").appendChild(uefachampsFootballLessImgLive);
+					$("#uefachamps-football-arrow-span-live").append("<img src='img/less.png' width='9' height='8' />");
 	            }
 	            else
 	            {
 					document.getElementById("uefachamps-football-arrow-span-live").textContent="More ";
-					document.getElementById("uefachamps-football-arrow-span-live").appendChild(uefachampsFootballMoreImgLive);
+					$("#uefachamps-football-arrow-span-live").append("<img src='img/more.png' width='9' height='8' />");
 	            }
 	        });
 	    });
@@ -610,12 +656,32 @@ $(document).ready(function() {
 	            if($content.is(":visible") == true)
 	            {
 					document.getElementById("uefachamps-football-arrow-span-reports").textContent=" Match Reports ";
-					document.getElementById("uefachamps-football-arrow-span-reports").appendChild(uefachampsFootballLessImgReports);
+					$("#uefachamps-football-arrow-span-reports").append("<img src='img/less.png' width='9' height='8' />");
 	            }
 	            else
 	            {
 					document.getElementById("uefachamps-football-arrow-span-reports").textContent="Match Reports ";
-					document.getElementById("uefachamps-football-arrow-span-reports").appendChild(uefachampsFootballMoreImgReports);
+					$("#uefachamps-football-arrow-span-reports").append("<img src='img/more.png' width='9' height='8' />");
+	            }
+	        });
+	    });
+	});
+	$(".facup-football-header-live").click(function () {
+
+	    $header = $(this);
+	    $content = $header.next();
+	    $content.slideToggle(100, function () {
+
+	        $header.text(function () {
+	            if($content.is(":visible") == true)
+	            {
+					document.getElementById("facup-football-arrow-span-live").textContent=" Less ";
+					$("#facup-football-arrow-span-live").append("<img src='img/less.png' width='9' height='8' />");
+	            }
+	            else
+	            {
+					document.getElementById("facup-football-arrow-span-live").textContent="More ";
+					$("#facup-football-arrow-span-live").append("<img src='img/more.png' width='9' height='8' />");
 	            }
 	        });
 	    });

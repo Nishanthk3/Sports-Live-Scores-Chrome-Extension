@@ -3,7 +3,7 @@
 
   "name": "Sports Live Scores",
   "description": "This extension shows Live scores and news of Cricket, English Premier League and UEFA Champions League Football.",
-  "version": "2.7",
+  "version": "2.8",
 
   "options_page": "options.html",
   "browser_action": {
