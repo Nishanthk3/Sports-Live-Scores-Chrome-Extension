@@ -49,10 +49,10 @@
       .cricket-container, .epl-football-container, .uefachamps-football-container {
         width:100%;
       }
-      #epl-football .descriptionClass, #uefachamps-football .descriptionClass {
+      #cricket .descriptionClass, #epl-football .descriptionClass, #uefachamps-football .descriptionClass {
         display:none;
       }
-      .cricket-container .cricket-header, .epl-football-container .epl-football-header-live, .epl-football-container .epl-football-header-reports, 
+      .cricket-container .cricket-header-localmatches, .cricket-container .cricket-header-news, .epl-football-container .epl-football-header-live, .epl-football-container .epl-football-header-reports, 
       .uefachamps-football-container .uefachamps-football-header-live, .uefachamps-football-container .uefachamps-football-header-reports{
         padding: 2px;
         cursor: pointer;
@@ -82,10 +82,18 @@
       </table>
       <h6 id="right" ><a href='http://www.espncricinfo.com/ci/engine/match/index.html?CMP=chrome'>more for cricket lovers <img border="0" src="img/raquo.png" width="10" height="9"></a></h6>
       <div class="cricket-container">
-        <div class="cricket-header"><span style="font-size: 70%" id="cricket-arrow-span">More <img src="img/more.png" width="9" height="8"></span>
+        <div class="cricket-header-localmatches"><span style="font-size: 70%" id="cricket-arrow-span-localmatches">More <img src="img/more.png" width="9" height="8"></span>
         </div>
         <div class="cricket-content">
           <table cellpadding='0' cellspacing='0' id="cricketTable1"/>    
+          </table>
+        </div>
+      </div>
+      <div class="cricket-container">
+        <div class="cricket-header-news"><span style="font-size: 70%" id="cricket-arrow-span-news">News <img src="img/more.png" width="9" height="8"></span>
+        </div>
+        <div class="cricket-content">
+          <table cellpadding='0' cellspacing='0' id="cricketTable2"/>    
           </table>
         </div>
       </div>

@@ -25,7 +25,7 @@ function getScores() {
 	{
 	    $.ajax({
 				type : 'GET',
-				url : "http://editonfly.com:8080/sports/cricket/rss.html",
+				url : "http://localhost:8080/sports/cricket/rss.html",
 				statusCode: {
 				    404: function() {
 				      alert( "Not Found" );
@@ -38,6 +38,7 @@ function getScores() {
 					$('.cricket-loader').remove();
 					var arr1 = text.ArrayList[0];
 					var arr2 = text.ArrayList[1];
+					var arr3 = text.ArrayList[2];
 					if(arr1.length == 0)
 					{
 						var tr = document.createElement('tr');
@@ -57,6 +58,12 @@ function getScores() {
 						td2.appendChild(h6);
 						tr.appendChild(td2);
 						document.getElementById('cricketTable1').appendChild(tr);
+					}
+					if(arr3.length == 0)
+					{
+						var h6 = document.createElement('h6');
+						h6.innerText = "No news as of now";
+						res.appendChild(h6);
 					}
 					for(var i=0; i<arr1.length; i++){
 						var tr = document.createElement('tr');
@@ -86,6 +93,31 @@ function getScores() {
 						tr.appendChild(td2);
 						document.getElementById('cricketTable1').appendChild(tr);				  
 					}
+					for(var i=0; i<arr3.length; i++){
+						var cricketPlusImg = document.createElement("img");
+						cricketPlusImg.src = "img/plus.png";
+						cricketPlusImg.width="9";
+						cricketPlusImg.height="9";
+						cricketPlusImg.className="cricket-plusminus";
+						cricketPlusImg.id="id9_"+i;
+						var tr = document.createElement('tr');
+						var td = document.createElement('td');
+						var h6 = document.createElement('h6');	
+						var h6_1 = document.createElement('h6');				
+						var a = document.createElement('a');
+						a.href = arr3[i].link;
+						a.innerText = "   "+arr3[i].title;
+						h6.appendChild(cricketPlusImg);
+						h6.appendChild(a);
+						h6_1.className = "descriptionClass"; 
+						h6_1.id="h69_"+i;
+						h6_1.innerText = arr3[i].description;
+						td.appendChild(h6);
+						td.appendChild(h6_1);
+						tr.appendChild(td);
+						document.getElementById('cricketTable2').appendChild(tr);
+					}
+					$('img.cricket-plusminus').click(showHide);
 				},
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
 					$('.cricket-loader').remove();
@@ -410,14 +442,22 @@ function showHide() {
 // }
 
 $(document).ready(function() { 
-    var cricketMoreImg = document.createElement("img");
-	cricketMoreImg.src = "img/more.png";
-	cricketMoreImg.width="9";
-	cricketMoreImg.height="8";
-	var cricketLessImg = document.createElement("img");
-	cricketLessImg.src = "img/less.png";
-	cricketLessImg.width="9";
-	cricketLessImg.height="8";
+    var cricketMoreImgLocalMatches = document.createElement("img");
+	cricketMoreImgLocalMatches.src = "img/more.png";
+	cricketMoreImgLocalMatches.width="9";
+	cricketMoreImgLocalMatches.height="8";
+	var cricketLessImgLocalMatches = document.createElement("img");
+	cricketLessImgLocalMatches.src = "img/less.png";
+	cricketLessImgLocalMatches.width="9";
+	cricketLessImgLocalMatches.height="8";
+    var cricketMoreImgNews = document.createElement("img");
+	cricketMoreImgNews.src = "img/more.png";
+	cricketMoreImgNews.width="9";
+	cricketMoreImgNews.height="8";
+	var cricketLessImgNews = document.createElement("img");
+	cricketLessImgNews.src = "img/less.png";
+	cricketLessImgNews.width="9";
+	cricketLessImgNews.height="8";
 	var eplFootballMoreImgLive = document.createElement("img");
 	eplFootballMoreImgLive.src = "img/more.png";
 	eplFootballMoreImgLive.width="9";
@@ -458,7 +498,7 @@ $(document).ready(function() {
     	$('a:not([href=#])').click(openLink);
 	});
 
-	$(".cricket-header").click(function () {
+	$(".cricket-header-localmatches").click(function () {
 
 	    $header = $(this);
 	    $content = $header.next();
@@ -467,13 +507,34 @@ $(document).ready(function() {
 	        $header.text(function () {
 	            if($content.is(":visible") == true)
 	            {
-					document.getElementById("cricket-arrow-span").textContent=" Less ";
-					document.getElementById("cricket-arrow-span").appendChild(cricketLessImg);
+					document.getElementById("cricket-arrow-span-localmatches").textContent=" Less ";
+					document.getElementById("cricket-arrow-span-localmatches").appendChild(cricketLessImgLocalMatches);
 	            }
 	            else
 	            {
-					document.getElementById("cricket-arrow-span").textContent="More ";
-					document.getElementById("cricket-arrow-span").appendChild(cricketMoreImg);
+					document.getElementById("cricket-arrow-span-localmatches").textContent="More ";
+					document.getElementById("cricket-arrow-span-localmatches").appendChild(cricketMoreImgLocalMatches);
+	            }
+	        });
+	    });
+
+	});
+	$(".cricket-header-news").click(function () {
+
+	    $header = $(this);
+	    $content = $header.next();
+	    $content.slideToggle(100, function () {
+
+	        $header.text(function () {
+	            if($content.is(":visible") == true)
+	            {
+					document.getElementById("cricket-arrow-span-news").textContent=" News ";
+					document.getElementById("cricket-arrow-span-news").appendChild(cricketLessImgNews);
+	            }
+	            else
+	            {
+					document.getElementById("cricket-arrow-span-news").textContent="News ";
+					document.getElementById("cricket-arrow-span-news").appendChild(cricketMoreImgNews);
 	            }
 	        });
 	    });
