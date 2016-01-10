@@ -401,11 +401,143 @@ function getScores() {
 	{
 		$('#uefachamps-football').remove();
 	}
+	if(leagues.indexOf("bundesliga")>-1 || leagues.indexOf("all-leagues")>-1 || leagues.length == 0 )
+	{
+	    $.ajax({
+			type : 'GET',
+			url : "http://editonfly.com:8080/sports/bundesligafootball/rss.html",
+			statusCode: {
+			    404: function() {
+			      alert( "Not Found" );
+			    },
+				401: function() {
+				      alert( "Unauthorized - Access Denied" );
+		    	}
+			},
+			success : function(text) {
+				$('.bundesliga-loader').remove();
+				var arr1 = text.ArrayList[0];
+				var arr2 = text.ArrayList[1];
+				//var eplFootballInnerDiv = document.getElementById("epl-football-innerdiv");
+				res = document.createDocumentFragment();
+				if(arr1.length == 0)
+				{
+					var h6 = document.createElement('h6');
+					h6.innerText = "No ongoing matches";
+					res.appendChild(h6);
+				}
+				if(arr2.length == 0)
+				{
+					var tr = document.createElement('tr');
+					var td2 = document.createElement('td');
+					var h6 = document.createElement('h6');
+					h6.innerText = "No ongoing matches";
+					td2.appendChild(h6);
+					tr.appendChild(td2);
+					document.getElementById('bundesligaFootballTable').appendChild(tr);
+				}
+				for(var i=0; i<arr1.length; i++){
+					if(i < 6 )
+					{
+						var footballPlusImg = document.createElement("img");
+						footballPlusImg.src = "img/plus.png";
+						footballPlusImg.width="9";
+						footballPlusImg.height="9";
+						footballPlusImg.className="bundesliga-plusminus";
+						footballPlusImg.id="idbundesliga0_"+i;
+						var tr = document.createElement('tr');
+						var td = document.createElement('td');
+						var h6 = document.createElement('h6');	
+						var h6_1 = document.createElement('h6');				
+						var a = document.createElement('a');
+						a.href = arr1[i].link;
+						a.innerText = "   "+arr1[i].title;
+						h6.appendChild(footballPlusImg);
+						h6.appendChild(a);
+						h6_1.className = "descriptionClass"; 
+						h6_1.id="h6bundesliga0_"+i;
+						h6_1.innerText = arr1[i].description;
+						td.appendChild(h6);
+						td.appendChild(h6_1);
+						tr.appendChild(td);
+						document.getElementById('bundesligaFootballTable').appendChild(tr);
+					}
+					else{
+						break;
+					}
+				}
+				for(var i=6; i<arr1.length; i++){
+				    var footballPlusImg = document.createElement("img");
+					footballPlusImg.src = "img/plus.png";
+					footballPlusImg.width="9";
+					footballPlusImg.height="9";
+					footballPlusImg.className="bundesliga-plusminus";
+					footballPlusImg.id="idbundesliga1_"+i;
+					var tr = document.createElement('tr');
+					var td2 = document.createElement('td');	
+					var h6 = document.createElement('h6');	
+					var h6_1 = document.createElement('h6');
+					var a = document.createElement('a');
+					a.href = arr1[i].link;
+					a.innerText = "   "+arr1[i].title;
+					h6.appendChild(footballPlusImg);
+					h6.appendChild(a);
+					res.appendChild(h6);
+					h6_1.className = "descriptionClass"; 
+					h6_1.id="h6bundesliga1_"+i;
+					h6_1.innerText = arr1[i].description;
+					res.appendChild(h6_1);	
+				}
+				document.getElementById('bundesligaFootballTable1').appendChild(res);
+
+				for(var i=0; i<arr2.length; i++){
+					var footballPlusImg = document.createElement("img");
+					footballPlusImg.src = "img/plus.png";
+					footballPlusImg.width="9";
+					footballPlusImg.height="9";
+					footballPlusImg.className="bundesliga-plusminus";
+					footballPlusImg.id="idbundesliga2_"+i;
+					var tr = document.createElement('tr');
+					var td = document.createElement('td');	
+					var h6 = document.createElement('h6');	
+					var h6_1 = document.createElement('h6');				
+					var a = document.createElement('a');
+					a.href = arr2[i].link;
+					a.innerText = "   "+arr2[i].title;
+					h6.appendChild(footballPlusImg);
+					h6.appendChild(a);
+					h6_1.className = "descriptionClass"; 
+					h6_1.id="h6bundesliga2_"+i;
+					h6_1.innerText = arr2[i].description;
+					td.appendChild(h6);
+					td.appendChild(h6_1);
+					tr.appendChild(td);
+					document.getElementById('bundesligaFootballTable2').appendChild(tr);
+				}
+				$('img.bundesliga-plusminus').click(showHide);
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				$('.bundesliga-loader').remove();
+				var tr = document.createElement('tr');
+				var td = document.createElement('td');
+				var h6 = document.createElement('h6');
+				h6.id="error";			
+				h6.innerText = "Sorry, something's wrong, will be fixed soon.";
+				td.appendChild(h6);
+				tr.appendChild(td);
+				document.getElementById('bundesligaFootballTable').appendChild(tr);
+			}
+		});
+	}
+	else
+	{
+		$('#bundesliga-football').remove();
+	}
 	if(leagues.indexOf("facup")>-1 || leagues.indexOf("all-leagues")>-1 || leagues.length == 0 )
 	{
 	    $.ajax({
 			type : 'GET',
-			url : "http://localhost:8080/sports/facupfootball/rss.html",
+			url : "http://editonfly.com:8080/sports/facupfootball/rss.html",
 			statusCode: {
 			    404: function() {
 			      alert( "Not Found" );
@@ -662,6 +794,46 @@ $(document).ready(function() {
 	            {
 					document.getElementById("uefachamps-football-arrow-span-reports").textContent="Match Reports ";
 					$("#uefachamps-football-arrow-span-reports").append("<img src='img/more.png' width='9' height='8' />");
+	            }
+	        });
+	    });
+	});
+	$(".bundesliga-football-header-live").click(function () {
+
+	    $header = $(this);
+	    $content = $header.next();
+	    $content.slideToggle(100, function () {
+
+	        $header.text(function () {
+	            if($content.is(":visible") == true)
+	            {
+					document.getElementById("bundesliga-football-arrow-span-live").textContent=" Less ";
+					$("#bundesliga-football-arrow-span-live").append("<img src='img/less.png' width='9' height='8' />");
+	            }
+	            else
+	            {
+					document.getElementById("bundesliga-football-arrow-span-live").textContent="More ";
+					$("#bundesliga-football-arrow-span-live").append("<img src='img/more.png' width='9' height='8' />");
+	            }
+	        });
+	    });
+	});
+	$(".bundesliga-football-header-news").click(function () {
+
+	    $header = $(this);
+	    $content = $header.next();
+	    $content.slideToggle(100, function () {
+
+	        $header.text(function () {
+	            if($content.is(":visible") == true)
+	            {
+					document.getElementById("bundesliga-football-arrow-span-news").textContent=" News ";
+					$("#bundesliga-football-arrow-span-news").append("<img src='img/less.png' width='9' height='8' />");
+	            }
+	            else
+	            {
+					document.getElementById("bundesliga-football-arrow-span-news").textContent="News ";
+					$("#bundesliga-football-arrow-span-news").append("<img src='img/more.png' width='9' height='8' />");
 	            }
 	        });
 	    });
