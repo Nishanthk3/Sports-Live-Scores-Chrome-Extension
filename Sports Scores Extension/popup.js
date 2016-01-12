@@ -667,11 +667,55 @@ function showHide() {
 // function renderStatus(statusText) {
 //   document.getElementById('status').textContent = statusText;
 // }
-
+function getManifestVersion(currentVersion) {
+	$.ajax({
+			type : 'GET',
+			url : "/manifest.json",
+			statusCode: {
+			    404: function() {
+			      alert( "Not Found" );
+			    },
+				401: function() {
+				      alert( "Unauthorized - Access Denied" );
+		    	}
+			},
+			success : function(text) {
+				if( currentVersion == JSON.parse(text).version)
+				{
+					$('.boxed #version').remove();
+				}
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				$('.boxed #version').remove();
+			}
+		});
+	}
+function getCurrentVersion() {
+	$.ajax({
+			type : 'GET',
+			url : "http://editonfly.com:8080/sports/extensionVersion",
+			statusCode: {
+			    404: function() {
+			      alert( "Not Found" );
+			    },
+				401: function() {
+				      alert( "Unauthorized - Access Denied" );
+		    	}
+			},
+			success : function(text) {
+				getManifestVersion(text);
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				$('.boxed #version').remove();
+			}
+		});
+	}
 $(document).ready(function() { 
+	getCurrentVersion();
     getCurrentTabUrl(function(url) {
     //renderStatus('Sports Live Scores');
     getScores();
+
     $(document).ajaxStop(function() {
     	$('a:not([href=#])').click(openLink);
 	});
