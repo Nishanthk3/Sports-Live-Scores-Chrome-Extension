@@ -72,6 +72,7 @@ function getScores() {
 						var a = document.createElement('a');
 						var span = document.createElement('span');
 						span.id = "span";
+						span.style.fontSize = "9px";
 						a.href = arr1[i].link;
 						a.innerText = arr1[i].title;
 						span.innerText = arr1[i].description;
@@ -628,6 +629,101 @@ function getScores() {
 	{
 		$('#facup-football').remove();
 	}
+	if(leagues.indexOf("laliga")>-1 || leagues.indexOf("all-leagues")>-1 || leagues.length == 0 )
+	{
+	    $.ajax({
+			type : 'GET',
+			url : "http://editonfly.com:8080/sports/laligafootball/rss.html",
+			statusCode: {
+			    404: function() {
+			      alert( "Not Found" );
+			    },
+				401: function() {
+				      alert( "Unauthorized - Access Denied" );
+		    	}
+			},
+			success : function(text) {
+				$('.laliga-loader').remove();
+				var arr1 = text.ArrayList;
+				if(arr1.length == 0)
+				{
+					var h6 = document.createElement('h6');
+					h6.innerText = "No ongoing matches";
+					res.appendChild(h6);
+				}
+				for(var i=0; i<arr1.length; i++){
+					if(i < 6 )
+					{
+						var footballPlusImg = document.createElement("img");
+						footballPlusImg.src = "img/plus.png";
+						footballPlusImg.width="9";
+						footballPlusImg.height="9";
+						footballPlusImg.className="laliga-plusminus";
+						footballPlusImg.id="idlaliga0_"+i;
+						var tr = document.createElement('tr');
+						var td = document.createElement('td');
+						var h6 = document.createElement('h6');	
+						var h6_1 = document.createElement('h6');				
+						var a = document.createElement('a');
+						a.href = arr1[i].link;
+						a.innerText = "   "+arr1[i].title;
+						h6.appendChild(footballPlusImg);
+						h6.appendChild(a);
+						h6_1.className = "descriptionClass"; 
+						h6_1.id="h6laliga0_"+i;
+						h6_1.innerText = arr1[i].description;
+						td.appendChild(h6);
+						td.appendChild(h6_1);
+						tr.appendChild(td);
+						document.getElementById('laligaFootballTable').appendChild(tr);
+					}
+					else{
+						break;
+					}
+				}
+				for(var i=6; i<arr1.length; i++){
+					var footballPlusImg = document.createElement("img");
+					footballPlusImg.src = "img/plus.png";
+					footballPlusImg.width="9";
+					footballPlusImg.height="9";
+					footballPlusImg.className="laliga-plusminus";
+					footballPlusImg.id="idlaliga1_"+i;
+					var tr = document.createElement('tr');
+					var td = document.createElement('td');	
+					var h6 = document.createElement('h6');	
+					var h6_1 = document.createElement('h6');				
+					var a = document.createElement('a');
+					a.href = arr1[i].link;
+					a.innerText = "   "+arr1[i].title;
+					h6.appendChild(footballPlusImg);
+					h6.appendChild(a);
+					h6_1.className = "descriptionClass"; 
+					h6_1.id="h6laliga1_"+i;
+					h6_1.innerText = arr1[i].description;
+					td.appendChild(h6);
+					td.appendChild(h6_1);
+					tr.appendChild(td);
+					document.getElementById('laligaFootballTable1').appendChild(tr);
+				}
+				$('img.laliga-plusminus').click(showHide);
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				$('.laliga-loader').remove();
+				var tr = document.createElement('tr');
+				var td = document.createElement('td');
+				var h6 = document.createElement('h6');
+				h6.id="error";			
+				h6.innerText = "Sorry, something's wrong, will be fixed soon.";
+				td.appendChild(h6);
+				tr.appendChild(td);
+				document.getElementById('laligaFootballTable').appendChild(tr);
+			}
+		});
+	}
+	else
+	{
+		$('#laliga-football').remove();
+	}
 }
 
 function openLink() {
@@ -898,6 +994,26 @@ $(document).ready(function() {
 	            {
 					document.getElementById("facup-football-arrow-span-live").textContent="More ";
 					$("#facup-football-arrow-span-live").append("<img src='img/more.png' width='9' height='8' />");
+	            }
+	        });
+	    });
+	});
+	$(".laliga-football-header-live").click(function () {
+
+	    $header = $(this);
+	    $content = $header.next();
+	    $content.slideToggle(100, function () {
+
+	        $header.text(function () {
+	            if($content.is(":visible") == true)
+	            {
+					document.getElementById("laliga-football-arrow-span-live").textContent=" Less ";
+					$("#laliga-football-arrow-span-live").append("<img src='img/less.png' width='9' height='8' />");
+	            }
+	            else
+	            {
+					document.getElementById("laliga-football-arrow-span-live").textContent="More ";
+					$("#laliga-football-arrow-span-live").append("<img src='img/more.png' width='9' height='8' />");
 	            }
 	        });
 	    });

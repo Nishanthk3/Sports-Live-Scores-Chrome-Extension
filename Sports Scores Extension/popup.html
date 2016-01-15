@@ -39,35 +39,33 @@
         border-width: 1px;
         background: #fff;
       }
-      .cricket-loader, .epl-loader, .uefa-loader, .bundesliga-loader, .facup-loader{
+      .cricket-loader, .epl-loader, .uefa-loader, .bundesliga-loader, .facup-loader, .laliga-loader{
         text-align:center;
       }
       .loader-img{
         width:30px;
         height:30px;
       }
-      .cricket-container, .epl-football-container, .uefachamps-football-container, .bundesliga-football-container, .facup-football-container {
+      .cricket-container, .epl-football-container, .uefachamps-football-container, .bundesliga-football-container, .facup-football-container, .laliga-football-container {
         width:100%;
       }
-      #cricket .descriptionClass, #epl-football .descriptionClass, #uefachamps-football .descriptionClass, #bundesliga-football .descriptionClass, #facup-football .descriptionClass {
+      #cricket .descriptionClass, #epl-football .descriptionClass, #uefachamps-football .descriptionClass, #bundesliga-football .descriptionClass, #facup-football .descriptionClass, 
+      #laliga-football .descriptionClass {
         display:none;
       }
-      .cricket-container .cricket-header-localmatches, .cricket-container .cricket-header-news, .epl-football-container .epl-football-header-live, .epl-football-container .epl-football-header-reports, 
-      .uefachamps-football-container .uefachamps-football-header-live, .uefachamps-football-container .uefachamps-football-header-reports, .facup-football-container .facup-football-header-live,
-      .bundesliga-football-container .bundesliga-football-header-live, .bundesliga-football-container .bundesliga-football-header-news/*, .facup-football-container .facup-football-header-reports*/{
+      .cricket-container .cricket-header-localmatches, .cricket-container .cricket-header-news, .epl-football-container .epl-football-header-live, .epl-football-container .epl-football-header-reports, .uefachamps-football-container .uefachamps-football-header-live, .uefachamps-football-container .uefachamps-football-header-reports, .bundesliga-football-container .bundesliga-football-header-live, .bundesliga-football-container .bundesliga-football-header-news, .facup-football-container .facup-football-header-live, /*, .facup-football-container .facup-football-header-reports*/ .laliga-football-container .laliga-football-header-live{
         padding: 2px;
         cursor: pointer;
         font-weight: bold;
       }
       .cricket-container .cricket-content, .epl-football-container .epl-football-content, .uefachamps-football-container .uefachamps-football-content, 
-      .bundesliga-football-container .bundesliga-football-content, .facup-football-container .facup-football-content{
+      .bundesliga-football-container .bundesliga-football-content, .facup-football-container .facup-football-content, .laliga-football-container .laliga-football-content{
         display: none;
         padding : 2px;
         font-size: 15px;
       }
     </style>
 
-    <script src="scripts/jquery-ui.js"></script>
     <script src="scripts/jquery-1.10.2.js"></script>
     <script src="popup.js"></script>  
 
@@ -120,6 +118,21 @@
       </div>
       <div class="epl-football-content">
         <table cellpadding='0' cellspacing='0' id="eplFootballTable2"/>    
+        </table>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="boxed" id="laliga-football">
+    <h6>SPANISH LALIGA - FOOTBALL<a style="float:right"; href="http://www.espnfc.us/spanish-primera-division/15/table">Rankings Table</a></h6>
+    <div class="laliga-loader">   <img class ="loader-img" src='img/loading.png'/></div>
+    <table cellpadding='0' cellspacing='0' id="laligaFootballTable">    
+    </table>
+    <div class="laliga-football-container">
+      <div class="laliga-football-header-live"><span style="font-size: 70%" id="laliga-football-arrow-span-live">More <img src="img/more.png" width="9" height="8"></span>
+      </div>
+      <div class="laliga-football-content">
+        <table cellpadding='0' cellspacing='0' id="laligaFootballTable1"/>    
         </table>
       </div>
     </div>
